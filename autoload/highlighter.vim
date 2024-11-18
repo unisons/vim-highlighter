@@ -2529,8 +2529,12 @@ endfunction
 
 function highlighter#Search(key)
   if v:hlsearch || (empty(s:GetJump()[0]) && !exists("s:HiMode"))
-    exe "normal! ".max([v:count, 1]).a:key.'zv'
-    set hlsearch
+    try
+      exe "normal! ".max([v:count, 1]).a:key.'zv'
+      set hlsearch
+    catch
+      echom v:exception
+    endtry
     return 0
   else
     let l:cmd = (a:key[0] ==# 'n') ? '>' : '<'
