@@ -401,7 +401,7 @@ function s:DeletePattern(match, line, pos)
         call matchdelete(l:m.id)
         call s:UpdateSync('del', l:m.group, l:m.pattern)
         if s:GetJump()[0] ==# l:m.pattern
-          call s:UpdateJump('', '')
+          " call s:UpdateJump('', '')
         endif
         return 1
       endif
